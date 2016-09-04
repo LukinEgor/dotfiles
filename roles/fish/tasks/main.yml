@@ -1,0 +1,9 @@
+---
+
+- name: Add repository
+  apt_repository:
+    repo='ppa:fish-shell/release-2'
+
+- name: Update an Install
+  apt:
+    name=fish update_cache=yes

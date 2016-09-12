@@ -3,4 +3,5 @@
 - hosts: all
   become: true
   roles:
-    - { role: fish }
+    - { role: fish, tags: ['fish'] }
+    - { role: nvim, tags: ['nvim'] }

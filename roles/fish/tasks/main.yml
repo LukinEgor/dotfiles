@@ -4,6 +4,6 @@
   apt_repository:
     repo='ppa:fish-shell/release-2'
 
-- name: Update an Install
+- name: Update and Install
   apt:
     name=fish update_cache=yes

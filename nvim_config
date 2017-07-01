@@ -5,6 +5,8 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 
 call plug#begin('~/.vim/plugged')
 
+"Plug 'omnisharp-vim'
+
 Plug 'jlanzarotta/bufexplorer'
 Plug 'Shougo/vimproc.vim'
 Plug 'tpope/vim-sensible'
@@ -30,8 +32,7 @@ Plug 'jimenezrick/vimerl'
 Plug 'rust-lang/rust.vim'
 Plug 'facebook/vim-flow'
 Plug '2072/PHP-Indenting-for-VIm'
-Plug 'shawncplus/phpcomplete.vim'
-" Plug 'joonty/vdebug'
+"Plug 'shawncplus/phpcomplete.vim'
 Plug 'tpope/vim-ragtag'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'neovimhaskell/haskell-vim'
@@ -43,9 +44,9 @@ Plug 'moll/vim-node'
 Plug 'mattn/emmet-vim'
 
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-easytags'
 
-Plug 'Valloric/MatchTagAlways'
+"Plug 'Valloric/MatchTagAlways'
 
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown'
@@ -74,9 +75,28 @@ Plug 'stephpy/vim-yaml'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
 
+Plug 'elixir-lang/vim-elixir'
+Plug 'jeetsukumaran/vim-buffergator'
+
 call plug#end()
 
 let mapleader=","
+
+"set clipboard+=unnamedplus
+set clipboard=unnamed
+
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -148,23 +168,23 @@ let g:buffergator_sort_regime = "mru"
 let g:vim_markdown_folding_disabled = 1
 
 let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_json_enabled_makers = ['jsonlint']
-let g:neomake_css_enabled_makers = ['stylelint']
-let g:neomake_scss_stylelint_maker = {
-      \ 'errorformat':
-      \ '%+P%f,' .
-      \ '%*\s%l:%c  %t  %m,' .
-      \ '%-Q'
-\ }
-let g:neomake_scss_enabled_makers = ['stylelint']
-let g:neomake_html_enabled_makers = ['tidy']
-let g:neomake_haml_enabled_makers = ['hamllint']
+"let g:neomake_ruby_enabled_makers = ['rubocop']
+"let g:neomake_json_enabled_makers = ['jsonlint']
+"let g:neomake_css_enabled_makers = ['stylelint']
+"let g:neomake_scss_stylelint_maker = {
+"      \ 'errorformat':
+"      \ '%+P%f,' .
+"      \ '%*\s%l:%c  %t  %m,' .
+"      \ '%-Q'
+"\ }
+"let g:neomake_scss_enabled_makers = ['stylelint']
+"let g:neomake_html_enabled_makers = ['tidy']
+"let g:neomake_haml_enabled_makers = ['hamllint']
 let g:neomake_jade_enabled_makers = ['jadelint']
 let g:neomake_elang_enabled_makers = ['erlc']
 let g:neomake_haskell_enabled_makers = ['ghc-mod']
 let g:neomake_go_enabled_makers = ['golint']
-let g:neomake_php_enabled_makers = ['php']
+"let g:neomake_php_enabled_makers = ['php']
 " let g:neomake__enabled_makers = ['']
 
 nmap <F8> :TagbarToggle<CR>
@@ -172,6 +192,9 @@ nmap <F8> :TagbarToggle<CR>
 " Toggle paste mode
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
 imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
+
+:imap <C-P> <ESC>
+:nmap <C-P> <ESC>
 
 " format the entire file
 nnoremap <leader>fef :normal! gg=G``<CR>
@@ -221,5 +244,5 @@ nnoremap <leader>b :BufExplorer<CR>
 
 au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 
-autocmd Filetype php setlocal ts=4 sw=4 autoindent
+"autocmd Filetype php setlocal ts=4 sw=4 autoindent
 autocmd! BufWritePost,BufEnter * Neomake

@@ -1,7 +1,0 @@
----
-
-- hosts: all
-  become: true
-  roles:
-    - { role: fish, tags: ['fish'] }
-    - { role: nvim, tags: ['nvim'] }

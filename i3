@@ -29,7 +29,7 @@ font pango:monospace 8
 set $up k
 set $down j
 set $left h
-set $right l 
+set $right l
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1

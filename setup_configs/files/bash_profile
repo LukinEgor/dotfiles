@@ -85,6 +85,8 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 # Show the difference between HEAD and its upstream with number of commits ahead/behind (+/-) upstream
 GIT_PS1_SHOWUPSTREAM="auto verbose"
 
+alias __git_ps1="git branch 2>/dev/null | grep '*' | sed 's/* \(.*\)/(\1)/'"
+
 set_prompt () {
     orange='\[\033[0;33m\]'
     reset='\[\e[00m\]'
@@ -104,4 +106,3 @@ export NVM_DIR="/home/egor/.nvm"
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export PATH="/home/egor/.config/yarn/global/node_modules/.bin:$PATH"
-source ~/.git-prompt.sh

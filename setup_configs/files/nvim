@@ -77,6 +77,7 @@ Plug 'ekalinin/Dockerfile.vim'
 
 Plug 'elixir-lang/vim-elixir'
 Plug 'jeetsukumaran/vim-buffergator'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
@@ -246,3 +247,31 @@ au BufRead,BufNewFile {Vagrantfile,Gemfile,Capfile} set ft=ruby
 
 "autocmd Filetype php setlocal ts=4 sw=4 autoindent
 autocmd! BufWritePost,BufEnter * Neomake
+
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
+"nnoremap <leader>j <C-S-J>
+"nnoremap <leader>k <C-S-K> nnoremap <leader>h <C-S-H>
+"nnoremap <leader>l <C-S-L>
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+nnoremap \ :Ag<SPACE>

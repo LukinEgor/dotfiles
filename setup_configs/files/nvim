@@ -78,6 +78,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'rizzatti/dash.vim'
 
 call plug#end()
 

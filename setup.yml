@@ -2,4 +2,4 @@
 
 - hosts: local
   roles:
-    - { role: setup_configs }
+    - { role: create_symlinks }

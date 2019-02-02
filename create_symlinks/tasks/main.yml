@@ -1,0 +1,11 @@
+- name: Create symlinks
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - { src: '{{ playbook_dir }}/create_symlinks/files/bash_profile', dest: '~/.bash_profile' }
+    - { src: '{{ playbook_dir }}/create_symlinks/files/karabiner.json', dest: '~/.config/karabiner/karabiner.json' }
+    - { src: '{{ playbook_dir }}/create_symlinks/files/vimrc', dest: '~/.config/nvim/init.vim' }
+    - { src: '{{ playbook_dir }}/create_symlinks/files/zshrc', dest: '~/.zshrc' }
+    - { src: '{{ playbook_dir }}/create_symlinks/files/tmux.conf', dest: '~/.tmux.conf' }

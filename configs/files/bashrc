@@ -112,3 +112,5 @@ export PATH
 #     | xkbcomp -I "$XKB_DIR" - "${DISPLAY%%.*}" >/dev/null 2>&1
 # fi
 
+setxkbmap -option 'ctrl:swapcaps'
+# setxkbmap -option grp:alt_shift_toggle us,ru

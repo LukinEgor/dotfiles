@@ -1,8 +1,10 @@
 ---
 
 - hosts: local
+  become: true
   roles:
     - { role: packages }
-    # - { role: configs
+    - { role: configs
     - { role: emacs }
     # TODO - { role: keybindings }
+    - { role: angstwad.docker_ubuntu, docker_group_members: [azx] }

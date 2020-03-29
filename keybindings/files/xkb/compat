@@ -1,0 +1,13 @@
+xkb_compat "custom" {
+  include "complete"
+
+  interpret osfLeft {
+    repeat= True;
+    action = RedirectKey(keycode=<LEFT>, clearmodifiers=Lock);
+  };
+
+  interpret Caps_Lock+AnyOfOrNone(all) {
+    action= SetMods(modifiers=Lock);
+  };
+};
+

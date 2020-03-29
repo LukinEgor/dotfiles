@@ -1,5 +1,5 @@
 prepare:
-	brew install ansible
+	sudo apt install ansible
 
 setup:
-	ansible-playbook -i hosts setup.yml -vvvv
+	ansible-playbook -i hosts setup.yml --ask-become-pass -vvvv

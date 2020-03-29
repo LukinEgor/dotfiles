@@ -1,0 +1,15 @@
+- name: Create neovim config dir
+  file:
+    path: '~/.config/nvim'
+    state: directory
+    mode: '0755'
+
+- name: Create symlinks
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - { src: '{{ playbook_dir }}/configs/files/bashrc', dest: '~/.bashrc' }
+    - { src: '{{ playbook_dir }}/configs/files/vimrc', dest: '~/.config/nvim/init.vim' }
+    - { src: '{{ playbook_dir }}/configs/files/tmux.conf', dest: '~/.tmux.conf' }

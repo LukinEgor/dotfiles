@@ -2,4 +2,7 @@
 
 - hosts: local
   roles:
-    - { role: create_symlinks }
+    - { role: packages }
+    # - { role: configs
+    - { role: emacs }
+    # TODO - { role: keybindings }

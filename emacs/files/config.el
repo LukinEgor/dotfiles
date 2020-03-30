@@ -98,3 +98,12 @@
 
 (setq doom-font (font-spec :family "monospace" :size 18 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "sans" :size 18))
+
+;; emacs/eshell
+(after! eshell
+  (set-eshell-alias!
+   "dc" "docker-compose \$*"
+   "dcrs" "docker-compose run --service-ports \$*"
+   "gl"  "(call-interactively 'magit-log-current)"
+   "gs"  "magit-status"
+   "gc"  "magit-commit"))

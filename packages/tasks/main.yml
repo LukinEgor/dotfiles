@@ -4,6 +4,7 @@
     pkg:
       - neovim
       - syncthing
+      - tmux
 
 
 - name: Install Vim Plug

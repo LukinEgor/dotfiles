@@ -1,0 +1,5 @@
+- name: enable synthing
+  systemd:
+    name: syncthing@azx.service
+    state: started
+    enabled: yes

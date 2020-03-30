@@ -8,3 +8,4 @@
     - { role: emacs }
     # TODO - { role: keybindings }
     - { role: angstwad.docker_ubuntu, docker_group_members: [azx] }
+    - { role: services }

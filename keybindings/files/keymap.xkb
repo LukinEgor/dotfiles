@@ -70,23 +70,14 @@ xkb_keymap {
         symbols[Group1]= [l, L, osfRight]
       };
 
+      key <AD11> {
+       type= "CUST_CAPSLOCK",
+       symbols[Group1]= [bracketleft, braceleft, Escape]
+      };
 
-//  key <AC06> {	[	  h,	H, Left		]	};
-//  key <AC07> {	[	  j,	J,Down	]	};
-//  key <AC08> {	[	  k,	K,Up  ]	};
-//  key <AC09> {	[	  l,	L,Right  ]	};
-//  key <AD11> {	[ bracketleft,	braceleft, Escape 	]	};
-//  key <AB07> {	[	  m,	M, Enter  ]	};
-
-  // key <LWIN> { [ ISO_Level3_Shift ] }; //see below!
- // key <CAPS> { [ ISO_Level3_Shift ] }; //see below!
-//  key <RALT> { [ ISO_Level3_Shift ] }; //see below!
-
- // key { [ h, H, Left, Left ] };
- // key { [ j, J, Down, Down ] };
- // key { [ k, K, Up, Up ] };
- // key { [ l, L, Right, Right ] };
-
-//   key <RWIN> { [ ISO_Next_Group ] }
+      key <AB07> {
+        type= "CUST_CAPSLOCK",
+        symbols[Group1]= [m, M, Return]
+      };
     };
 };

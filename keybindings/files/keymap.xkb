@@ -1,0 +1,92 @@
+xkb_keymap {
+    xkb_keycodes  { include "evdev+aliases(qwerty)" };
+
+
+    xkb_compat    {
+      include "complete"
+
+      interpret osfLeft {
+        repeat= True;
+        action = RedirectKey(keycode=<LEFT>, clearmodifiers=Control);
+      };
+
+      interpret osfDown {
+        repeat= True;
+        action = RedirectKey(keycode=<DOWN>, clearmodifiers=Control);
+      };
+
+      interpret osfUp {
+        repeat= True;
+        action = RedirectKey(keycode=<UP>, clearmodifiers=Control);
+      };
+
+      interpret osfRight {
+        repeat= True;
+        action = RedirectKey(keycode=<RGHT>, clearmodifiers=Control);
+      };
+
+      interpret Caps_Lock+AnyOfOrNone(all) {
+        action= SetMods(modifiers=Control);
+      };
+    };
+
+
+    xkb_types     {
+     include "complete"
+
+     type "CUST_CAPSLOCK" {
+       modifiers= Shift+Control;
+       map[Shift] = Level2;            // Note that this maps Shift only of {Shift,Lock} to Level2. Alt+Shift will be mapped to Level2
+       map[Shift+Control] = Level3;       // but Lock+Shift won't map to Level2 even without this line.
+       map[Control] = Level3;
+       level_name[Level1]= "Base";
+       level_name[Level2]= "Shift";
+       level_name[Level3]= "Control";
+     };
+    };
+
+
+    xkb_symbols   {
+      include "pc+us+ru:2+inet(evdev)"
+      include "ctrl(swapcaps)"
+
+      key <AC06> {
+        type= "CUST_CAPSLOCK",
+        symbols[Group1]= [h, H, osfLeft]
+      };
+
+      key <AC07> {
+        type= "CUST_CAPSLOCK",
+        symbols[Group1]= [j, J, osfDown]
+      };
+
+      key <AC08> {
+        type= "CUST_CAPSLOCK",
+        symbols[Group1]= [k, K, osfUp]
+      };
+
+      key <AC09> {
+        type= "CUST_CAPSLOCK",
+        symbols[Group1]= [l, L, osfRight]
+      };
+
+
+//  key <AC06> {	[	  h,	H, Left		]	};
+//  key <AC07> {	[	  j,	J,Down	]	};
+//  key <AC08> {	[	  k,	K,Up  ]	};
+//  key <AC09> {	[	  l,	L,Right  ]	};
+//  key <AD11> {	[ bracketleft,	braceleft, Escape 	]	};
+//  key <AB07> {	[	  m,	M, Enter  ]	};
+
+  // key <LWIN> { [ ISO_Level3_Shift ] }; //see below!
+ // key <CAPS> { [ ISO_Level3_Shift ] }; //see below!
+//  key <RALT> { [ ISO_Level3_Shift ] }; //see below!
+
+ // key { [ h, H, Left, Left ] };
+ // key { [ j, J, Down, Down ] };
+ // key { [ k, K, Up, Up ] };
+ // key { [ l, L, Right, Right ] };
+
+//   key <RWIN> { [ ISO_Next_Group ] }
+    };
+};

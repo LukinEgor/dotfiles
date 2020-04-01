@@ -104,15 +104,6 @@ export PATH="/home/egor/.config/yarn/global/node_modules/.bin:$PATH"
 PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 export PATH
 
-# XKB_DIR="$HOME/.config/xkb"
-
-# TODO: setup keybinding
-# if [[ -n $(which setxkbmap) && -n $(which xkbcomp) ]]; then
-#     setxkbmap -layout "us,ru" -option "" -option "ctrl:swapcaps" -print \
-#     | xkbcomp -I "$XKB_DIR" - "${DISPLAY%%.*}" >/dev/null 2>&1
-# fi
-
-setxkbmap -option 'ctrl:swapcaps'
-# setxkbmap -option grp:alt_shift_toggle us,ru
+xkbcomp -I$HOME/.xkb $HOME/.keymap.xkb $DISPLAY
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

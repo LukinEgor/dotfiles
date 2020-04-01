@@ -114,3 +114,5 @@ export PATH
 
 setxkbmap -option 'ctrl:swapcaps'
 # setxkbmap -option grp:alt_shift_toggle us,ru
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

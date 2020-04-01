@@ -5,6 +5,7 @@
       - neovim
       - syncthing
       - tmux
+      - silversearcher-ag
 
 
 - name: Install Vim Plug

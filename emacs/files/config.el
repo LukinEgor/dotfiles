@@ -52,6 +52,13 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
+(setq ivy-re-builders-alist
+       '((swiper . ivy--regex-plus)
+         (t      . ivy--regex-fuzzy)))
+
+
+;; fuzzy search by default
+(setq helm-mode-fuzzy-match t)
 
 (setq projectile-project-search-path '("~/Projects/" "~/shared/"))
 
@@ -84,11 +91,11 @@
 
 (setq eshell-cmpl-cycle-completions nil)
 
-(map! :leader
-      :desc "ag" "s a" #'counsel-ag)
+;; (map! :leader
+;;       :desc "ag" "s a" #'counsel-ag)
 
-(map! :leader
-      :desc "fzf" "s f" #'counsel-fzf)
+;; (map! :leader
+;;       :desc "fzf" "s f" #'counsel-fzf)
 
 (setq doom-theme 'doom-acario-dark)
 

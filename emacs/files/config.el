@@ -123,3 +123,5 @@
 
 (setq google-translate-default-source-language '"en")
 (setq google-translate-default-target-language '"ru")
+
+(setq ein:notebook-autosave-frequency 5000)

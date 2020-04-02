@@ -54,4 +54,5 @@
 (package! org-super-agenda)
 (package! anki-editor)
 (package! tramp-term)
-
+(package! google-translate)
+(package! google-translate-default-ui)

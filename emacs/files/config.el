@@ -55,9 +55,10 @@
 
 ;; fuzzy search by default
 (setq helm-mode-fuzzy-match t)
+
 (setq ivy-re-builders-alist
-       '((swiper . ivy--regex-plus)
-         (t      . ivy--regex-fuzzy)))
+      '((counsel-ag . regexp-quote)
+        (t      . ivy--regex-fuzzy)))
 
 (setq projectile-project-search-path '("~/Projects/" "~/shared/"))
 

@@ -36,10 +36,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-
-
 # Grep with color
 alias grep='grep --color=auto '
 
@@ -48,6 +44,8 @@ alias cyr='grep "[А-я,Ё,ё]" '
 
 # Show all files extensions
 alias lfe="find . -type f | sed -En 's|.*/[^/]+\.([^/.]+)$|\1|p' | sort -u"
+
+alias pbcopy='xsel --clipboard --input'
 
 ## History configuration
 # Appending history instead of rewriting
@@ -105,5 +103,3 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 export PATH
 
 xkbcomp -I$HOME/.xkb $HOME/.keymap.xkb $DISPLAY
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

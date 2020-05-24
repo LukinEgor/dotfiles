@@ -1,9 +1,18 @@
 xkb_keymap {
-    xkb_keycodes  { include "evdev+aliases(qwerty)" };
-
+    xkb_keycodes  {
+      include "evdev+aliases(qwerty)"
+    };
 
     xkb_compat    {
       include "complete"
+
+      interpret ISO_Next_Group {
+        action = LockGroup(group=+1);
+      };
+
+      interpret ISO_Prev_Group {
+        action = LockGroup(group=-1);
+      };
 
       interpret osfLeft {
         repeat= True;
@@ -79,5 +88,7 @@ xkb_keymap {
         type= "CUST_CAPSLOCK",
         symbols[Group1]= [m, M, Return]
       };
+
+      key <LWIN> { [ ISO_Next_Group ] };
     };
 };

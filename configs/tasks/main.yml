@@ -13,3 +13,6 @@
     - { src: '{{ playbook_dir }}/configs/files/bashrc', dest: '~/.bashrc' }
     - { src: '{{ playbook_dir }}/configs/files/vimrc', dest: '~/.config/nvim/init.vim' }
     - { src: '{{ playbook_dir }}/configs/files/tmux.conf', dest: '~/.tmux.conf' }
+    - { src: '{{ playbook_dir }}/configs/files/i3', dest: '~/.config/i3/config' }
+    - { src: '{{ playbook_dir }}/configs/files/polybar', dest: '~/.config/polybar/config' }
+    - { src: '{{ playbook_dir }}/configs/files/launch.sh', dest: '~/.config/polybar/launch.sh' }

@@ -84,22 +84,6 @@ set_prompt () {
 }
 PROMPT_COMMAND=set_prompt
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-export PATH="/home/egor/.gem/ruby/2.4.0/bin:$PATH"
 export VISUAL="vim"
-
 export PATH=$HOME/bin:$PATH
-
-export NVM_DIR="/home/egor/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export PATH="/home/egor/.config/yarn/global/node_modules/.bin:$PATH"
-
-# Setting PATH for Python 3.7
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
-export PATH
-
-xkbcomp -I$HOME/.xkb $HOME/.keymap.xkb $DISPLAY
+export PATH="/home/azx/Projects:${PATH}"

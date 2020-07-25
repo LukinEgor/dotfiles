@@ -28,7 +28,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/shared/org/")
+(setq org-directory "~/org/")
 
 (setq org-super-agenda-groups
       '((:name "Log\n"
@@ -49,6 +49,10 @@
         (:name "Scheduled earlier\n"
                :scheduled past)))
 
+(setq org-agenda-files (quote ("~/org"
+                               "~/org/notes"
+                               "~/Projects")))
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
@@ -60,10 +64,8 @@
       '((counsel-ag . regexp-quote)
         (t      . ivy--regex-fuzzy)))
 
-(setq projectile-project-search-path '("~/Projects/" "~/shared/"))
+(setq projectile-project-search-path '("~/Projects/"))
 
-
-; (setq mac-command-modifier 'meta)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -106,7 +108,6 @@
 (setq doom-font (font-spec :family "monospace" :size 18 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "sans" :size 18))
 
-;; emacs/eshell
 (after! eshell
   (set-eshell-alias!
    "dc" "docker-compose \$*"
@@ -125,4 +126,65 @@
 (setq google-translate-default-source-language '"en")
 (setq google-translate-default-target-language '"ru")
 
-(setq ein:notebook-autosave-frequency 5000)
+(setq browse-url-browser-function 'eww-browse-url)
+
+(setq org-roam-directory "~/org/notes")
+
+(after! org-roam
+  (map! :leader
+        :prefix "r"
+        :desc "org-roam" "l" #'org-roam
+        :desc "org-roam-insert" "i" #'org-roam-insert
+        :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
+        :desc "org-roam-find-file" "f" #'org-roam-find-file
+        :desc "org-roam-show-graph" "g" #'org-roam-show-graph
+        :desc "org-roam-insert" "i" #'org-roam-insert
+        :desc "org-roam-capture" "c" #'org-roam-capture))
+
+(setq magit-margin-settings "preffix")
+
+(setq org-capture-templates
+      '(("d" "default" plain (function org-roam--capture-get-point)
+         "%?"
+         :file-name "%<%Y%m%d%H%M%S>-${slug}"
+         :head "#+title: ${title}\n#++roam_tags:"
+         :unnarrowed t)))
+
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :ensure t
+  :config (treemacs-icons-dired-mode))
+
+;; (setq org-capture-templates
+;;       '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+;;          "* TODO %?\n  %i\n  %a")
+;;         ("j" "Journal" entry (file+datetree "~/org/journal.org")
+;;          "* %?\nEntered on %U\n  %i\n  %a")))
+
+
+;; Org-roam
+;; (use-package org-roam
+;;   :ensure t
+;;   :hook
+;;   (after-init . org-roam-mode)
+;;   :custom
+;;   (org-roam-directory "~/org/notes")
+;;   :bind (:map org-roam-mode-map
+;;           (("C-c n l" . org-roam)
+;;            ("C-c n f" . org-roam-find-file)
+;;            ("C-c n g" . org-roam-graph-show))
+;;           :map org-mode-map
+;;           (("C-c n i" . org-roam-insert))
+;;           (("C-c n I" . org-roam-insert-immediate))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (treemacs-icons-dired))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

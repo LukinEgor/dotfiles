@@ -58,7 +58,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = i3
 modules-center =
-modules-right = i3 filesystem xbacklight alsa xkeyboard memory cpu wlan battery temperature date
+modules-right = filesystem xbacklight alsa xkeyboard memory cpu wlan battery temperature date
 
 tray-position = right
 tray-padding = 2

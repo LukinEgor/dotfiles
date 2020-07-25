@@ -8,6 +8,7 @@
       - silversearcher-ag
       - thunderbird
       - texlive-full
+      - j4-dmenu-desktop
 
 
 - name: Install Vim Plug

@@ -114,6 +114,7 @@
    "dcrs" "docker-compose run --service-ports \$*"
    "gl"  "(call-interactively 'magit-log-current)"
    "gs"  "magit-status"
+   "g"   "git"
    "gc"  "magit-commit"))
 
 (setq ein:output-area-inlined-images t)
@@ -154,37 +155,3 @@
   :after treemacs dired
   :ensure t
   :config (treemacs-icons-dired-mode))
-
-;; (setq org-capture-templates
-;;       '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-;;          "* TODO %?\n  %i\n  %a")
-;;         ("j" "Journal" entry (file+datetree "~/org/journal.org")
-;;          "* %?\nEntered on %U\n  %i\n  %a")))
-
-
-;; Org-roam
-;; (use-package org-roam
-;;   :ensure t
-;;   :hook
-;;   (after-init . org-roam-mode)
-;;   :custom
-;;   (org-roam-directory "~/org/notes")
-;;   :bind (:map org-roam-mode-map
-;;           (("C-c n l" . org-roam)
-;;            ("C-c n f" . org-roam-find-file)
-;;            ("C-c n g" . org-roam-graph-show))
-;;           :map org-mode-map
-;;           (("C-c n i" . org-roam-insert))
-;;           (("C-c n I" . org-roam-insert-immediate))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (treemacs-icons-dired))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

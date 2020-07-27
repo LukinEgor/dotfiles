@@ -43,6 +43,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
 
 bindsym $mod+Shift+b exec --no-startup-id i3lock
+bindsym $mod+Shift+e exec --no-startup-id emacs
 
 # change focus
 bindsym $mod+h focus left

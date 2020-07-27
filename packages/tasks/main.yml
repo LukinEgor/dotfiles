@@ -17,8 +17,13 @@
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 
+- name: Check anki
+  command: which anki
+  register: contents
+
+
 - name: Install anki
-  become_user: azx
+  when: contents.stdout == ""
   shell: |
     wget -P ~/Downloads/ https://github.com/ankitects/anki/releases/download/2.1.22/anki-2.1.22-linux-amd64.tar.bz2
     tar xjf ~/Downloads/anki-2.1.22-linux-amd64.tar.bz2

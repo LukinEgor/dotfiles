@@ -7,7 +7,6 @@
   with_items:
     - { src: '{{ playbook_dir }}/keybindings/files/keymap.xkb', dest: '~/.keymap.xkb' }
 
-
 - name: Set keybindings
   become_user: azx
   shell: |

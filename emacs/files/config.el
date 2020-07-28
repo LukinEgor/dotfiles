@@ -155,3 +155,5 @@
   :after treemacs dired
   :ensure t
   :config (treemacs-icons-dired-mode))
+
+(add-to-list 'projectile-globally-ignored-directories "*node_modules")

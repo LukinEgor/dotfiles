@@ -1,7 +1,37 @@
-- name: Install packages
+- name: Install software-properties-common
   become: true
   apt:
     pkg:
+      - software-properties-common
+
+
+- name: Add an oracle_vbox_2016 apt key
+  become: true
+  apt_key:
+    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    state: present
+
+
+- name: Add an oracle_vbox apt key
+  become: true
+  apt_key:
+    url: https://www.virtualbox.org/download/oracle_vbox.asc
+    state: present
+
+
+- name: Add virtualbox repo
+  become: true
+  apt_repository:
+    repo: deb http://download.virtualbox.org/virtualbox/debian bionic contrib
+    state: present
+
+
+- name: Install packages
+  become: true
+  update_cache: true
+  apt:
+    pkg:
+      - unzip
       - neovim
       - syncthing
       - tmux
@@ -9,6 +39,8 @@
       - thunderbird
       - texlive-full
       - j4-dmenu-desktop
+      - virtualbox-6.0
+      - vagrant
 
 
 - name: Install Vim Plug
@@ -19,13 +51,97 @@
 
 - name: Check anki
   command: which anki
-  register: contents
+  register: anki
 
 
 - name: Install anki
-  when: contents.stdout == ""
+  when: anki.stdout == ""
   shell: |
     wget -P ~/Downloads/ https://github.com/ankitects/anki/releases/download/2.1.22/anki-2.1.22-linux-amd64.tar.bz2
     tar xjf ~/Downloads/anki-2.1.22-linux-amd64.tar.bz2
     cd anki-2.1.22-linux-amd64
     sudo make install
+
+
+- name: Check kubectl
+  command: which kubectl
+  register: kubectl
+  failed_when: kubectl.rc != 1 and kubectl.rc != 0
+
+
+- name: Install kubectl
+  when: kubectl.stdout == ""
+  shell: |
+    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+    chmod +x ./kubectl
+    sudo mv ./kubectl /usr/local/bin/kubectl
+
+
+- name: Check minikube
+  command: which minikube
+  register: minikube
+  failed_when: minikube.rc != 1 and minikube.rc != 0
+
+
+- name: Install minikube
+  when: minikube.stdout == ""
+  shell: |
+    curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube
+    sudo mkdir -p /usr/local/bin/
+    sudo install minikube /usr/local/bin/
+
+
+- name: Check helm
+  command: which helm
+  register: helm
+  failed_when: helm.rc != 1 and helm.rc != 0
+
+
+- name: Install helm
+  when: helm.stdout == ""
+  shell: |
+    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+
+- name: Check yandex cli
+  command: which yc
+  register: yc
+  failed_when: yc.rc != 1 and yc.rc != 0
+
+
+- name: Install yc
+  when: yc.stdout == ""
+  shell: |
+    curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+
+
+- name: Check terraform
+  command: which terraform
+  register: terraform
+  failed_when: terraform.rc != 1 and terraform.rc != 0
+
+
+- name: Install terraform
+  vars:
+    tf_version: 0.12.29
+  when: terraform.stdout == ""
+  shell: |
+    wget https://releases.hashicorp.com/terraform/{{ tf_version }}/terraform_{{ tf_version}}_linux_amd64.zip
+    unzip terraform_{{ tf_version }}_linux_amd64.zip
+    sudo mv terraform /usr/local/bin/
+
+
+- name: Check packer
+  command: which packer
+  register: packer
+  failed_when: packer.rc != 1 and packer.rc != 0
+
+
+- name: Install packer
+  vars:
+    packer_version: 1.6.0
+  when: packer.stdout == ""
+  shell: |
+    wget https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
+    unzip packer_{{ packer_version }}_linux_amd64.zip
+    sudo mv packer /usr/local/bin/

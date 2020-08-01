@@ -60,3 +60,7 @@
 (package! eslint-fix)
 (package! typescript-mode :disable t)
 (package! tide :disable t)
+;; (package! vterm)
+;; (package! devdocs)
+(package! zeal-at-point)
+(package! aweshell)

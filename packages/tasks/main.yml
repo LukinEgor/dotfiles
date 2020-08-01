@@ -41,6 +41,14 @@
       - j4-dmenu-desktop
       - virtualbox-6.0
       - vagrant
+      - zeal
+
+
+- name: Install ripgrep
+  become: true
+  snap:
+    name: ripgrep
+    classic: yes
 
 
 - name: Install Vim Plug

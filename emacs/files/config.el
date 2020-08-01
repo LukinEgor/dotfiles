@@ -157,3 +157,6 @@
   :config (treemacs-icons-dired-mode))
 
 (add-to-list 'projectile-globally-ignored-directories "*node_modules")
+
+(add-to-list 'load-path (expand-file-name "~/Projects/aweshell"))
+(require 'aweshell)

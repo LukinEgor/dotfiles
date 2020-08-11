@@ -205,8 +205,11 @@ let g:neomake_go_enabled_makers = ['golint']
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
 imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
-:imap <C-P> <ESC>
-:nmap <C-P> <ESC>
+:imap <C-[> <ESC>
+:nmap <C-[> <ESC>
+
+:inoremap <C-[> <Esc>
+:tnoremap <C-[>  <C-\><C-n>
 
 " format the entire file
 nnoremap <leader>fef :normal! gg=G``<CR>

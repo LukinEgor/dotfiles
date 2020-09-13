@@ -1,5 +1,4 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -19,7 +18,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 14))
+;; (setq doom-font (font-spec :family "monospace" :size 20))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -28,7 +27,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Projects/gtd/")
 
 (setq org-super-agenda-groups
       '((:name "Log\n"
@@ -49,9 +48,9 @@
         (:name "Scheduled earlier\n"
                :scheduled past)))
 
-(setq org-agenda-files (quote ("~/org"
-                               "~/org/notes"
-                               "~/Projects")))
+(setq org-agenda-files (quote ("~/Project/gtd")))
+
+(setq org-download-dir "~/Projects/notes/img")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -105,8 +104,8 @@
   '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 
 
-(setq doom-font (font-spec :family "monospace" :size 18 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 18))
+(setq doom-font (font-spec :family "monospace" :size 24 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 24))
 
 (after! eshell
   (set-eshell-alias!
@@ -129,7 +128,8 @@
 
 (setq browse-url-browser-function 'eww-browse-url)
 
-(setq org-roam-directory "~/org/notes")
+(setq org-roam-directory "~/Projects/notes")
+(setq org-roam-db-location  "~/Projects/notes/org-roam.db")
 
 (after! org-roam
   (map! :leader
@@ -156,7 +156,26 @@
   :ensure t
   :config (treemacs-icons-dired-mode))
 
-(add-to-list 'projectile-globally-ignored-directories "*node_modules")
+;; (add-to-list 'projectile-globally-ignored-directories "*node_modules")
 
 (add-to-list 'load-path (expand-file-name "~/Projects/aweshell"))
 (require 'aweshell)
+
+(setq dionysos-backend 'vlc)
+
+;; mu4e
+(setq +mu4e-backend 'offlineimap)
+(set-email-account! "LukinEgor"
+  '((mu4e-sent-folder       . "//Sent Mail")
+    (mu4e-drafts-folder     . "/Lissner.net/Drafts")
+    (mu4e-trash-folder      . "/Lissner.net/Trash")
+    (mu4e-refile-folder     . "/Lissner.net/All Mail")
+    (smtpmail-smtp-user     . "lukin.net@gmail.com")
+    (mu4e-compose-signature . "---\nEgor Lukin"))
+  t)
+
+(add-to-list 'company-backends #'company-tabnine)
+
+(add-hook 'dired-mode-hook 'org-download-enable)
+
+(setq doom-themes-treemacs-theme "doom-colors")

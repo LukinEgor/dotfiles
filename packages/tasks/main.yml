@@ -28,7 +28,6 @@
 
 - name: Install packages
   become: true
-  update_cache: true
   apt:
     pkg:
       - unzip
@@ -36,12 +35,18 @@
       - syncthing
       - tmux
       - silversearcher-ag
-      - thunderbird
       - texlive-full
       - j4-dmenu-desktop
       - virtualbox-6.0
-      - vagrant
       - zeal
+      - vlc
+      - keepassxc
+      - maildir-utils
+      - offlineimap
+      - net-tools
+      - zsh
+      - graphviz
+      - git-crypt
 
 
 - name: Install ripgrep
@@ -111,18 +116,6 @@
     curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 
-- name: Check yandex cli
-  command: which yc
-  register: yc
-  failed_when: yc.rc != 1 and yc.rc != 0
-
-
-- name: Install yc
-  when: yc.stdout == ""
-  shell: |
-    curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-
-
 - name: Check terraform
   command: which terraform
   register: terraform
@@ -153,3 +146,57 @@
     wget https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
     unzip packer_{{ packer_version }}_linux_amd64.zip
     sudo mv packer /usr/local/bin/
+
+
+- name: Check kind
+  command: which kind
+  register: kind
+  failed_when: kind.rc != 1 and kind.rc != 0
+
+
+- name: Install kind
+  vars:
+    kind_version: 0.8.1
+  when: kind.stdout == ""
+  shell: |
+    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v{{ kind_version }}/kind-linux-amd64
+    chmod +x ./kind
+    sudo mv ./kind /usr/local/bin/kind
+
+
+- name: Check kubespy
+  command: which kubespy
+  register: kubespy
+  failed_when: kubespy.rc != 1 and kubespy.rc != 0
+
+
+- name: Install kubespy
+  vars:
+    kubespy_version: 0.5.1
+  when: kubespy.stdout == ""
+  shell: |
+    wget https://github.com/pulumi/kubespy/releases/download/v{{ kubespy_version }}/kubespy-linux-amd64.tar.gz
+    tar -zxvf kubespy-linux-amd64.tar.gz
+    sudo mv releases/kubespy-linux-amd64/kubespy /usr/local/bin/
+    rm -rf releases
+
+
+- name: Check vagrant
+  command: which vagrant
+  register: vagrant
+  failed_when: vagrant.rc != 1 and vagrant.rc != 0
+
+
+- name: Install vagrant
+  vars:
+    vagrant_version: 2.2.10
+  when: vagrant.stdout == ""
+  shell: |
+    wget https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_linux_amd64.zip
+    unzip vagrant_{{ vagrant_version }}_linux_amd64.zip
+    sudo mv vagrant /usr/local/bin/
+
+
+- name: Install oh my zsh
+  shell: |
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

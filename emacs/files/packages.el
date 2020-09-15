@@ -67,3 +67,4 @@
 (package! org-download)
 (package! company-tabnine)
 (package! graphviz-dot-mode)
+(package! org-journal)

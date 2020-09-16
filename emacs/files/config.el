@@ -181,10 +181,15 @@
 (setq doom-themes-treemacs-theme "doom-colors")
 
 (use-package org-journal
-  :bind
-  ("C-c n j" . org-journal-new-entry)
   :custom
   (org-journal-date-prefix "#+title: ")
   (org-journal-file-format "%Y-%m-%d.org")
   (org-journal-dir "~/Projects/notes")
   (org-journal-date-format "%A, %d %B %Y"))
+
+(after! org-journal
+  (map! :leader
+        :prefix "j"
+        :desc "org-journal-new-entry" "n" #'org-journal-new-entry
+        :desc "org-journal-search-forever" "s" #'org-journal-search-forever
+        :desc "org-journal-read-entry" "r" #'org-journal-read-entry))

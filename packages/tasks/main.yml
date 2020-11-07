@@ -55,6 +55,12 @@
     name: ripgrep
     classic: yes
 
+- name: Install ngrok
+  become: true
+  snap:
+    name: ngrok
+    classic: yes
+
 
 - name: Install Vim Plug
   shell: |
@@ -197,6 +203,49 @@
     sudo mv vagrant /usr/local/bin/
 
 
-- name: Install oh my zsh
+- name: Check sops
+  command: which sops
+  register: sops
+  failed_when: sops.rc != 1 and sops.rc != 0
+
+
+- name: Install sops
+  vars:
+    sops_version: 3.6.1
+  when: sops.stdout == ""
   shell: |
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    wget https://github.com/mozilla/sops/releases/download/v{{ sops_version }}/sops-v{{ sops_version }}.linux
+    sudo chmod +x sops-v{{ sops_version }}.linux
+    sudo mv sops-v{{ sops_version }}.linux /usr/local/bin/sops
+
+
+- name: Check kubecfg
+  command: which kubecfg
+  register: kubecfg
+  failed_when: kubecfg.rc != 1 and kubecfg.rc != 0
+
+
+- name: Install kubecfg
+  vars:
+    kubecfg_version: 0.16.0
+  when: kubecfg.stdout == ""
+  shell: |
+    wget https://github.com/bitnami/kubecfg/releases/download/v{{ kubecfg_version }}/kubecfg-linux-amd64
+    sudo chmod +x kubecfg-linux-amd64
+    sudo mv kubecfg-linux-amd64 /usr/local/bin/kubecfg
+
+
+- name: Check helmfile
+  command: which helmfile
+  register: helmfile
+  failed_when: helmfile.rc != 1 and helmfile.rc != 0
+
+
+- name: Install helmfile
+  vars:
+    helmfile_version: 0.130.0
+  when: helmfile.stdout == ""
+  shell: |
+    wget https://github.com/roboll/helmfile/releases/download/v{{ helmfile_version }}/helmfile_linux_amd64
+    sudo chmod +x helmfile_linux_amd64
+    sudo mv helmfile_linux_amd64 /usr/local/bin/helmfile

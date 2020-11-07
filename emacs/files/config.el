@@ -48,7 +48,7 @@
         (:name "Scheduled earlier\n"
                :scheduled past)))
 
-(setq org-agenda-files (quote ("~/Project/gtd")))
+(setq org-agenda-files (quote ("~/Projects/gtd")))
 
 (setq org-download-dir "~/Projects/notes/img")
 
@@ -98,7 +98,7 @@
 ;; (map! :leader
 ;;       :desc "fzf" "s f" #'counsel-fzf)
 
-(setq doom-theme 'doom-acario-dark)
+(setq doom-theme 'doom-gruvbox-light)
 
 (setq org-todo-keywords
   '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
@@ -151,15 +151,15 @@
          :head "#+title: ${title}\n#++roam_tags:"
          :unnarrowed t)))
 
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :ensure t
-  :config (treemacs-icons-dired-mode))
+;; (use-package treemacs-icons-dired
+;;   :after treemacs dired
+;;   :ensure t
+;;   :config (treemacs-icons-dired-mode))
 
 ;; (add-to-list 'projectile-globally-ignored-directories "*node_modules")
 
-(add-to-list 'load-path (expand-file-name "~/Projects/aweshell"))
-(require 'aweshell)
+;; (add-to-list 'load-path (expand-file-name "~/Projects/aweshell"))
+;; (require 'aweshell)
 
 (setq dionysos-backend 'vlc)
 
